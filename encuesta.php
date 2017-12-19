@@ -18,7 +18,12 @@
     <script type="text/javascript" src="js/materialize.min.js"></script>
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+$nombre=$_GET['nombre'];
+$rut=$_GET['rut'];
+
+if (isset($_POST['action'])){
+
+  try{
 
   $dbServername = "localhost";
 
@@ -27,29 +32,72 @@ $dbPassword = "";
 $dbName = "encuestas";
 
 $conn=mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
-//mysql_set_charset('utf8');
+
+
 $result=mysqli_query($conn,'SET NAMES utf8');
+
+
+$servicio=$_POST['servicio'];
+$calidad=$_POST['calidad'];
+$probabilidad=$_POST['probabilidad'];
+$comentarios1=$_POST['comentarios1'];
+$comentarios2=$_POST['comentarios2'];
+$comentarios3=$_POST['comentarios3'];
+
+$sql="REPLACE into encuestas
+(nombre,
+rut,
+servicio,
+calidad,
+probabilidad,
+comentarios1,
+comentarios2,
+comentarios3)
+values
+(
+'$nombre',
+'$rut',
+$servicio,
+$calidad,
+  $probabilidad,
+'$comentarios1',
+'$comentarios2',
+'$comentarios3')";
+
+$result =mysqli_query($conn,$sql);
+if (!$result) {
+    printf("Falló la conexión: %s\n", mysqli_error($conn));
+    exit();
+}
+else{
+  include("mail.php");
+  header("exito.php");
+}
+
+}catch(Exception $e){
+  print_R($e);
+  die();
+}
 
 
 }
 
 
 
+
  ?>
 
-<form action="encuesta.php">
+<form method="post" action="encuesta.php">
     <div class="container">
 
           <div class="row">
-            <h5>Nombre de la Empresa</h5>
-<input name="nombre" type="text" id="nombre" required/>
+            <h5>Nombre de la Empresa: <?php echo $nombre ?></h5>
           </div>
 
 
 
                     <div class="row">
-                      <h5>RUT de la Empresa</h5>
-          <input name="rut" type="text" id="rut" required/>
+                      <h5>RUT de la Empresa : <?php echo $rut ?></h5>
                     </div>
 
 
@@ -59,42 +107,30 @@ $result=mysqli_query($conn,'SET NAMES utf8');
               <div class="col s12">
                 <table class="striped">
                   <tr class="titulo">
-                  <th>Muy Insatisfecho</th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
+                  <th>Insatisfecho</th>
+                  <th>Satisfecho</th>
                   <th>Muy Satisfecho</th>
                 </tr>
-                <tr>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>2</td>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>5</td>
-                  <td>6</td>
-                  <td>7</td>
-                  </tr>
+
 
                   <tr>
-                                  <td><input type="radio" name="servicio" value="0" id="type0" /><label for="type0" required></label></td>
+                                  <td><input type="radio" name="servicio" value="0" id="type0" required/><label for="type0" ></label></td>
                                   <td><input type="radio" name="servicio" value="1" id="type1" /><label for="type1"></label></td>
                                   <td><input type="radio" name="servicio" value="2" id="type2" /><label for="type2"></label></td>
-                                  <td><input type="radio" name="servicio" value="3" id="type3" /><label for="type3"></label></td>
-                                  <td><input type="radio" name="servicio" value="4" id="type4" /><label for="type4"></label></td>
-                                  <td><input type="radio" name="servicio" value="5" id="type5" /><label for="type5"></label></td>
-                                  <td><input type="radio" name="servicio" value="6" id="type6" /><label for="type6"></label></td>
-                                  <td><input type="radio" name="servicio" value="7" id="type7" /><label for="type7"></label></td>
-
                   </tr>
                 </table>
 
 
 
               </div>
+
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <label for="textarea1">Deje su comentario. Tiene 200 caracteres</label>
+                <textarea id="textarea0"  name="comentarios1" class="materialize-textarea" maxlength="200" data-length="200"></textarea>
+
+            </div>
 
 
         </div>
@@ -105,40 +141,26 @@ $result=mysqli_query($conn,'SET NAMES utf8');
                 <table class="striped">
                   <tr class="titulo">
                   <th>Malo(a)</th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
-                  <th></th>
+                  <th>Bueno</th>
                   <th>Excelente</th>
                 </tr>
-                <tr>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>2</td>
-                  <td>3</td>
-                  <td>4</td>
-                  <td>5</td>
-                  <td>6</td>
-                  <td>7</td>
-                  </tr>
-                  <tr>
-                       <td><input type="radio" name="calidad" value="0" id="type01" /><label for="type01" required></label></td>
+
+                       <td><input type="radio" name="calidad" value="0" id="type01" required /><label for="type01" ></label></td>
                         <td><input type="radio" name="calidad" value="1" id="type11" /><label for="type11"></label></td>
                         <td><input type="radio" name="calidad" value="2" id="type21" /><label for="type21"></label></td>
-                        <td><input type="radio" name="calidad" value="3" id="type31" /><label for="type31"></label></td>
-                        <td><input type="radio" name="calidad" value="4" id="type41" /><label for="type41"></label></td>
-                        <td><input type="radio" name="calidad" value="5" id="type51" /><label for="type51"></label></td>
-                        <td><input type="radio" name="calidad" value="6" id="type61" /><label for="type61"></label></td>
-                        <td><input type="radio" name="calidad" value="7" id="type71" /><label for="type71"></label></td>
+
 
                   </tr>
                 </table>
 
 
               </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <label for="textarea1">Deje su comentario. Tiene 200 caracteres</label>
+                  <textarea id="textarea1"  name="comentarios2" class="materialize-textarea" maxlength="200" data-length="200"></textarea>
 
+              </div>
 
         </div>
 
@@ -148,34 +170,13 @@ $result=mysqli_query($conn,'SET NAMES utf8');
                         <table class="striped">
                           <tr class="titulo">
                           <th>Nada probable</th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
-                          <th></th>
+                          <th>Probable</th>
                           <th>Muy Probable</th>
                         </tr>
-                        <tr>
-                          <td>0</td>
-                          <td>1</td>
-                          <td>2</td>
-                          <td>3</td>
-                          <td>4</td>
-                          <td>5</td>
-                          <td>6</td>
-                          <td>7</td>
-                          </tr>
                           <tr>
                               <td><input type="radio" name="probabilidad" value="0" id="type02" required/><label for="type02"></label></td>
                              <td><input type="radio" name="probabilidad" value="1" id="type12" /><label for="type12"></label></td>
                              <td><input type="radio" name="probabilidad" value="2" id="type22" /><label for="type22"></label></td>
-                             <td><input type="radio" name="probabilidad" value="3" id="type32" /><label for="type32"></label></td>
-                             <td><input type="radio" name="probabilidad" value="4" id="type42" /><label for="type42"></label></td>
-                             <td><input type="radio" name="probabilidad" value="5" id="type52" /><label for="type52"></label></td>
-                             <td><input type="radio" name="probabilidad" value="6" id="type62" /><label for="type62"></label></td>
-                             <td><input type="radio" name="probabilidad" value="7" id="type72" /><label for="type72"></label></td>
-
                           </tr>
                         </table>
 
@@ -184,14 +185,14 @@ $result=mysqli_query($conn,'SET NAMES utf8');
 
 
                 </div>
-
                 <div class="row">
-                  <h1>Comentarios</h1>
                   <div class="input-field col s12">
-                    <label for="textarea1">Tiene 200 caracteres</label>
-                    <textarea id="textarea1" class="materialize-textarea" data-length="200"></textarea>
+                    <label for="textarea1">Deje su comentario. Tiene 200 caracteres</label>
+                    <textarea id="textarea2"  name="comentarios3" class="materialize-textarea" maxlength="200" data-length="200"></textarea>
 
                 </div>
+
+
 
       <div class="row">
         <button class="btn waves-effect waves-light" type="submit" name="action">Enviar
