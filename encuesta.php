@@ -18,12 +18,14 @@
     <script type="text/javascript" src="js/materialize.min.js"></script>
 <?php
 
-$nombre=$_GET['nombre'];
-$rut=$_GET['rut'];
 
 if (isset($_POST['action'])){
 
   try{
+
+
+  $nombre=$_POST['nombre'];
+  $rut=$_POST['rut'];
 
   $dbServername = "localhost";
 
@@ -40,9 +42,21 @@ $result=mysqli_query($conn,'SET NAMES utf8');
 $servicio=$_POST['servicio'];
 $calidad=$_POST['calidad'];
 $probabilidad=$_POST['probabilidad'];
+
+if(isset($_POST['comentarios1'])){
 $comentarios1=$_POST['comentarios1'];
+}
+else $comentarios1="";
+
+if(isset($_POST['comentarios2'])){
 $comentarios2=$_POST['comentarios2'];
+}
+else $comentarios2="";
+
+if(isset($_POST['comentarios3'])){
 $comentarios3=$_POST['comentarios3'];
+}
+else $comentarios1="";
 
 $sql="REPLACE into encuestas
 (nombre,
@@ -81,6 +95,9 @@ else{
 
 
 }
+else {$nombre=$_GET['nombre'];
+$rut=$_GET['rut'];
+}
 
 
 
@@ -92,12 +109,15 @@ else{
 
           <div class="row">
             <h5>Nombre de la Empresa: <?php echo $nombre ?></h5>
+            <input type="hidden" value="<?php echo $nombre ?>" name="nombre"/>
           </div>
 
 
 
                     <div class="row">
                       <h5>RUT de la Empresa : <?php echo $rut ?></h5>
+                      <input type="hidden" value="<?php echo $rut ?>" name="rut"/>
+
                     </div>
 
 
@@ -128,7 +148,7 @@ else{
             <div class="row">
               <div class="input-field col s12">
                 <label for="textarea1">Deje su comentario. Tiene 200 caracteres</label>
-                <textarea id="textarea0"  name="comentarios1" class="materialize-textarea" maxlength="200" data-length="200"></textarea>
+                <textarea id="textarea0" required  name="comentarios1" class="materialize-textarea" maxlength="200" data-length="200"></textarea>
 
             </div>
 
@@ -158,7 +178,7 @@ else{
               <div class="row">
                 <div class="input-field col s12">
                   <label for="textarea1">Deje su comentario. Tiene 200 caracteres</label>
-                  <textarea id="textarea1"  name="comentarios2" class="materialize-textarea" maxlength="200" data-length="200"></textarea>
+                  <textarea id="textarea1" required name="comentarios2" class="materialize-textarea" maxlength="200" data-length="200"></textarea>
 
               </div>
 
@@ -188,7 +208,7 @@ else{
                 <div class="row">
                   <div class="input-field col s12">
                     <label for="textarea1">Deje su comentario. Tiene 200 caracteres</label>
-                    <textarea id="textarea2"  name="comentarios3" class="materialize-textarea" maxlength="200" data-length="200"></textarea>
+                    <textarea id="textarea2" required  name="comentarios3" class="materialize-textarea" maxlength="200" data-length="200"></textarea>
 
                 </div>
 
