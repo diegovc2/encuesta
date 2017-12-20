@@ -85,7 +85,9 @@ if (!$result) {
 }
 else{
   include("mail.php");
-  $mensaje="Sus datos fueron agregados. Muchas gracias!";
+  $mensaje="Sus datos fueron agregados. Muchas gracias por su tiempo!";
+  header('Location: '. "http://http://192.168.0.28/encuesta/exito.php");
+
 }
 
 }catch(Exception $e){
@@ -108,10 +110,17 @@ $rut=$_GET['rut'];
 <form method="post" action="encuesta.php">
     <div class="container">
 
-          <div class="row">
-            <h1 style="color:green"><?php if (isset($mensaje) )echo $mensaje; ?></h1>
+      <?php
+        if(isset($mensaje)){ ?>
 
+          <div class="row">
+            <h1 style="color:green"><?php echo $mensaje; ?></h1>
           </div>
+
+          <?php
+
+        } else{
+          ?>
 
           <div class="row">
             <h5>Nombre de la Empresa: <?php echo $nombre ?></h5>
@@ -179,6 +188,8 @@ $rut=$_GET['rut'];
                   </tr>
                 </table>
 
+              </div>
+
 
               </div>
               <div class="row">
@@ -217,6 +228,7 @@ $rut=$_GET['rut'];
                     <textarea id="textarea2"   name="comentarios3" class="materialize-textarea" maxlength="200" data-length="200"></textarea>
 
                 </div>
+              </div>
 
 
 
@@ -226,6 +238,7 @@ $rut=$_GET['rut'];
         </button>
       </div>
 
+<?php }?>
         </div>
 
 </form>
