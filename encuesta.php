@@ -86,7 +86,7 @@ if (!$result) {
 else{
   include("mail.php");
   $mensaje="Sus datos fueron agregados. Muchas gracias por su tiempo!";
-  header('Location: '. "http://http://192.168.0.28/encuesta/exito.php");
+  header('Location: '. "http://192.168.0.28/encuesta/exito.php");
 
 }
 
