@@ -85,7 +85,7 @@ if (!$result) {
 }
 else{
   include("mail.php");
-  header("exito.php");
+  $mensaje="Sus datos fueron agregados. Muchas gracias!";
 }
 
 }catch(Exception $e){
@@ -104,8 +104,14 @@ $rut=$_GET['rut'];
 
  ?>
 
+
 <form method="post" action="encuesta.php">
     <div class="container">
+
+          <div class="row">
+            <h1 style="color:green"><?php if (isset($mensaje) )echo $mensaje; ?></h1>
+
+          </div>
 
           <div class="row">
             <h5>Nombre de la Empresa: <?php echo $nombre ?></h5>
@@ -148,7 +154,7 @@ $rut=$_GET['rut'];
             <div class="row">
               <div class="input-field col s12">
                 <label for="textarea1">Deje su comentario. Tiene 200 caracteres</label>
-                <textarea id="textarea0" required  name="comentarios1" class="materialize-textarea" maxlength="200" data-length="200"></textarea>
+                <textarea id="textarea0"  name="comentarios1" class="materialize-textarea" maxlength="200" data-length="200"></textarea>
 
             </div>
 
@@ -178,7 +184,7 @@ $rut=$_GET['rut'];
               <div class="row">
                 <div class="input-field col s12">
                   <label for="textarea1">Deje su comentario. Tiene 200 caracteres</label>
-                  <textarea id="textarea1" required name="comentarios2" class="materialize-textarea" maxlength="200" data-length="200"></textarea>
+                  <textarea id="textarea1"  name="comentarios2" class="materialize-textarea" maxlength="200" data-length="200"></textarea>
 
               </div>
 
@@ -208,7 +214,7 @@ $rut=$_GET['rut'];
                 <div class="row">
                   <div class="input-field col s12">
                     <label for="textarea1">Deje su comentario. Tiene 200 caracteres</label>
-                    <textarea id="textarea2" required  name="comentarios3" class="materialize-textarea" maxlength="200" data-length="200"></textarea>
+                    <textarea id="textarea2"   name="comentarios3" class="materialize-textarea" maxlength="200" data-length="200"></textarea>
 
                 </div>
 
