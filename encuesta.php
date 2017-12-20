@@ -123,7 +123,9 @@ $rut=$_GET['rut'];
           ?>
 
           <div class="row">
-            <h5>Nombre de la Empresa: <?php echo $nombre ?></h5>
+            <h5>Nombre de la Empresa: <?php
+            $nombrecod= str_replace("_"," ",$nombre);
+             echo $nombrecod; ?></h5>
             <input type="hidden" value="<?php echo $nombre ?>" name="nombre"/>
           </div>
 
