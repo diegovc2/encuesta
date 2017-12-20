@@ -151,9 +151,9 @@ $rut=$_GET['rut'];
 
 
                   <tr>
-                                  <td><input type="radio" name="servicio" value="0" id="type0" required/><label for="type0" ></label></td>
-                                  <td><input type="radio" name="servicio" value="1" id="type1" /><label for="type1"></label></td>
-                                  <td><input type="radio" name="servicio" value="2" id="type2" /><label for="type2"></label></td>
+                                  <td><input type="radio" name="servicio" value="1" id="type0" required/><label for="type0" ></label></td>
+                                  <td><input type="radio" name="servicio" value="2" id="type1" /><label for="type1"></label></td>
+                                  <td><input type="radio" name="servicio" value="3" id="type2" /><label for="type2"></label></td>
                   </tr>
                 </table>
 
@@ -182,9 +182,9 @@ $rut=$_GET['rut'];
                   <th>Excelente</th>
                 </tr>
 
-                       <td><input type="radio" name="calidad" value="0" id="type01" required /><label for="type01" ></label></td>
-                        <td><input type="radio" name="calidad" value="1" id="type11" /><label for="type11"></label></td>
-                        <td><input type="radio" name="calidad" value="2" id="type21" /><label for="type21"></label></td>
+                       <td><input type="radio" name="calidad" value="1" id="type01" required /><label for="type01" ></label></td>
+                        <td><input type="radio" name="calidad" value="2" id="type11" /><label for="type11"></label></td>
+                        <td><input type="radio" name="calidad" value="3" id="type21" /><label for="type21"></label></td>
 
 
                   </tr>
@@ -213,9 +213,9 @@ $rut=$_GET['rut'];
                           <th>Muy Probable</th>
                         </tr>
                           <tr>
-                              <td><input type="radio" name="probabilidad" value="0" id="type02" required/><label for="type02"></label></td>
-                             <td><input type="radio" name="probabilidad" value="1" id="type12" /><label for="type12"></label></td>
-                             <td><input type="radio" name="probabilidad" value="2" id="type22" /><label for="type22"></label></td>
+                              <td><input type="radio" name="probabilidad" value="1" id="type02" required/><label for="type02"></label></td>
+                             <td><input type="radio" name="probabilidad" value="2" id="type12" /><label for="type12"></label></td>
+                             <td><input type="radio" name="probabilidad" value="3" id="type22" /><label for="type22"></label></td>
                           </tr>
                         </table>
 

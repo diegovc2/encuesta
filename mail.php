@@ -75,11 +75,11 @@ $mail = new PHPMailer(true);                              // Passing `true` enab
     $mail->Body    =
 		            '<p>Nombre:  '.$nombre.'</p>'.
                     '<p>Rut:  '.$rut.'</p>'.
-                    '<p>Satisfacción del Servicio:  '.$servicio.'/2 </p>'.
+                    '<p>Satisfacción del Servicio:  '.$servicio.'/3 </p>'.
                     '<p>Comentarios:  '.$comentarios1.' </p>'.
-                    '<p>Nivel de Calidad:  '.$calidad.'/2 </p>'.
+                    '<p>Nivel de Calidad:  '.$calidad.'/3 </p>'.
                     '<p>Comentarios:  '.$comentarios2.'</p>'.
-                    '<p>Probabilidad de Recontratación:  '.$probabilidad.'/2 <p>'.
+                    '<p>Probabilidad de Recontratación: '.$probabilidad.'/3 <p>'.
                       '<p>Comentarios:  '.$comentarios3.' <p>'
 
     ;
